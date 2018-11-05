@@ -1,0 +1,53 @@
+body p {
+    text-align: justify;
+}
+
+.hardword {
+    color: red;
+}
+
+.tooltiptext {
+    display: none;
+}
+
+#reader {
+    margin-top: 30px;
+    width: 80%;
+    padding: 5% 10% 5% 10%;
+    background: #47525e;
+}
+        
+#flipbook {
+    height:640px;
+    width:100%;
+}
+
+#flipbook .hard {
+    height: 100%;
+    text-align: center;
+    font-family: 'Arvo', serif;
+}
+
+#flipbook .page {
+    height:640px;
+    background-color: white;
+}
+
+#flipbook .page p {
+    padding: 5%;
+    text-align: justify;
+    font-size: 12pt;
+}
+
+#flipbook .turn-page {
+    width: 100%;
+    background-size: 100% 100%;
+}/* Steve jobs' book */
+
+#flipbook .even{
+    background: linear-gradient(to right, white 85%, #ccc 100%);
+}
+
+#flipbook .odd{
+    background: linear-gradient(to bottom right, white 80%, #999 100%);
+}

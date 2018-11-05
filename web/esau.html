@@ -1,0 +1,94 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <title>Machado Simplificado</title>
+        <meta charset="utf-8" lang="pt-br" />
+        <link href="https://fonts.googleapis.com/css?family=Arvo:400|Lato:400,400i" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <link rel="stylesheet" type="text/css" href="book.css" />
+        <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.js"></script>
+		<script src="turn.js"></script>
+		<script>
+			$(document).ready(function()
+				{
+					$('.hardword').each(function() {
+						$(this).qtip({
+							content: { text: $(this).next('.tooltiptext') },
+							style: { classes: 'qtip-bootstrap' }
+						});
+					});
+                    $('#flipbook').turn({
+                        display: 'double',
+                        acceleration: true,
+                        gradients: true,
+                        elevation: 50,
+                        pages: 596
+                    });
+
+                    $("#flipbook").bind("turning", function(event, page, view) {
+
+                        var range = $("#flipbook").turn("range", page);
+
+                        for (var p = range[0]; p<=range[1]; p = p + 1){
+
+                            if (!$("#flipbook").turn("hasPage", p)) {
+
+                                if (p%2 != 0) {
+                                    source = 'books/esau/'
+                                    source += (page-4).toString().padStart(3, '0')
+                                    source += '.html'
+                                    elementRight = $("<div />").load(source);
+                                    $("#flipbook").turn("addPage", elementRight, p); 
+                                    $('.hardword').each(function() {
+                                        $(this).qtip({
+                                            content: { text: $(this).next('.tooltiptext') },
+                                            style: { classes: 'qtip-bootstrap' }
+                                        });
+                                    });
+                                } else {
+                                    source = 'books/esau/'
+                                    source += (page-5).toString().padStart(3, '0')
+                                    source += '.html'
+                                    elementLeft = $("<div />").load(source)
+                                    $("#flipbook").turn("addPage", elementLeft, p);
+                                    $('.hardword').each(function() {
+                                        $(this).qtip({
+                                            content: { text: $(this).next('.tooltiptext') },
+                                            style: { classes: 'qtip-bootstrap' }
+                                        });
+                                    });
+                                }                            
+                            }
+                        }
+                    });
+				});
+        </script>
+    </head>
+    <body>
+        <div id="page">
+            <header>
+                <a href="index.html"><div id="logo" class="title">Machadinho</div></a>
+                <div class="description">Ferramenta de simplificação de obras de Machado de Assis</div>
+            </header>
+            <div id="shelves">
+                <section id="panel" class="title">
+                    <h1>Leitor</h1>
+                    <p><a href="index.html">Carregar outra obra</a></p>
+                </section>
+                <section id="reader">
+                    <div id="flipbook">
+                        <div class="hard"><br /><br /><br /><br />Esaú e Jacó</div>
+                        <div class="hard"></div>
+                        <div></div>
+                        <div></div>
+                        <div class="hard"></div>
+                        <div class="hard"></div>
+                    </div>
+                </section>
+            </div>
+            <footer>© 2018 Insane Bookodz Factory</footer>
+        </div>
+    </body>
+</html>
